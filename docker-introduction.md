@@ -1,26 +1,37 @@
-#Docker
-Virtual Machines use virtualization technology, which enables developers to run multiple applications on the same server securely and in complete isolation without investing in a new server for every application. But Virtual Machines had some flaws: each VM has its own Operating System, Kernel, and virtualized hardware, which costs additional RAM, more CPU cycles, more storage, and a license fee for each guest Operating System. Developers needed a more lightweight approach. 
+# Docker
 
-##Solution: 
-A lightweight approach using containerization technology, where the application and all its dependencies are packed into an isolated environment. This approach shares the host OS kernel and hardware resources but provides operating-system-level and process-level isolation. This isolation allows multiple applications to run independently on the same host machine using a single OS. This makes containers lightweight, small, and fast compared to Virtual Machines. The most well-known software that standardizes this approach is Docker. 
-Docker is an open-source platform for developing, shipping, and running applications in a loosely isolated environment called a container. Docker uses containers to package applications along with their dependencies. A container is a standardized unit for developing, distributing, testing, and deploying applications. Docker separates the application from the underlying system environment and allows infrastructure to be managed using software and configuration files. The container contains the application code, runtime environment, libraries, and dependencies, which can be shipped to another machine. Docker ensures that the application behaves consistently across different environments, even if other machines have different software versions or installed packages, addressing the common problem: “It works on my machine.” 
+Virtual Machines use virtualization technology, which enables developers to run multiple applications on the same server securely and in complete isolation without investing in a new server for every application. But Virtual Machines had some flaws: each VM has its own Operating System, Kernel, and virtualized hardware, which costs additional RAM, more CPU cycles, more storage, and a license fee for each guest Operating System. Developers needed a more lightweight approach.
 
-##Docker Architecture: 
-- Docker uses a client-server architecture. 
-- The client sends requests to the Docker daemon (dockerd) using commands through the Docker CLI or Docker API. 
-- Dockerd performs the core work of building images, running containers, and managing Docker operations. 
-- The client and dockerd can run on the same machine, or the client can connect to a remote daemon. 
-- The client communicates with dockerd using REST APIs through UNIX sockets or network interfaces and can communicate with more than one daemon.
+## Solution
 
-##Docker Daemon: 
-The Docker daemon listens for requests from the Docker API and manages Docker objects such as images, containers, volumes, networks, plugins, and more. The daemon can also communicate with other daemons to manage Docker services. 
+A lightweight approach using containerization technology, where the application and all its dependencies are packed into an isolated environment. This approach shares the host OS kernel and hardware resources but provides operating-system-level and process-level isolation. This isolation allows multiple applications to run independently on the same host machine using a single OS. This makes containers lightweight, small, and fast compared to Virtual Machines. The most well-known software that standardizes this approach is Docker.
 
-##Docker Registry: 
-Docker Registry is the storage and distribution system for Docker images. The most famous registry is Docker Hub. By default, Docker pulls images from Docker Hub, although it can be configured to use other registries. You can push or pull images to or from any registry by configuring Docker properly. 
+Docker is an open-source platform for developing, shipping, and running applications in a loosely isolated environment called a container. Docker uses containers to package applications along with their dependencies. A container is a standardized unit for developing, distributing, testing, and deploying applications. Docker separates the application from the underlying system environment and allows infrastructure to be managed using software and configuration files. The container contains the application code, runtime environment, libraries, and dependencies, which can be shipped to another machine. Docker ensures that the application behaves consistently across different environments, even if other machines have different software versions or installed packages, addressing the common problem:
 
-##Images: 
-An image is a blueprint for a container. It is a read-only template that includes all the instructions required to create and run a container. A single image can create multiple containers. You can use images created by others and customize them as needed. To create your own image, you write a Dockerfile using simple syntax that defines all the steps required to build the image. 
-Behind the scenes, images are built in layers, and each layer is created from an instruction in the Dockerfile. When the Dockerfile is changed and the image is rebuilt, only the modified layers are rebuilt, while unchanged layers are reused from cache. This improves build speed, storage efficiency, and image distribution. 
+> “It works on my machine.”
 
-##Containers: 
+## Docker Architecture
+
+- Docker uses a client-server architecture.
+- The client sends requests to the Docker daemon (`dockerd`) using commands through the Docker CLI or Docker API.
+- `dockerd` performs the core work of building images, running containers, and managing Docker operations.
+- The client and `dockerd` can run on the same machine, or the client can connect to a remote daemon.
+- The client communicates with `dockerd` using REST APIs through UNIX sockets or network interfaces and can communicate with more than one daemon.
+
+## Docker Daemon
+
+The Docker daemon listens for requests from the Docker API and manages Docker objects such as images, containers, volumes, networks, plugins, and more. The daemon can also communicate with other daemons to manage Docker services.
+
+## Docker Registry
+
+Docker Registry is the storage and distribution system for Docker images. The most famous registry is Docker Hub. By default, Docker pulls images from Docker Hub, although it can be configured to use other registries. You can push or pull images to or from any registry by configuring Docker properly.
+
+## Images
+
+An image is a blueprint for a container. It is a read-only template that includes all the instructions required to create and run a container. A single image can create multiple containers. You can use images created by others and customize them as needed. To create your own image, you write a Dockerfile using simple syntax that defines all the steps required to build the image.
+
+Behind the scenes, images are built in layers, and each layer is created from an instruction in the Dockerfile. When the Dockerfile is changed and the image is rebuilt, only the modified layers are rebuilt, while unchanged layers are reused from cache. This improves build speed, storage efficiency, and image distribution.
+
+## Containers
+
 A container is a running instance of an image. Containers can be managed using the Docker CLI or Docker API. You can connect a container to multiple networks, attach storage volumes, and create a new image from the current state of a container. By default, Containers are isolated from other containers and from the host environment, although the level of network, storage, and resource isolation can be configured. Containers share the host OS kernel but maintain their own isolated user-space environment, including filesystem, libraries, processes, and runtime dependencies.
